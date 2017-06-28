@@ -189,7 +189,7 @@ class ApplicationController do
   private
     def set_build_context
       logger.with_context(build: {version: "1.0.0"}) do
-        # All logs writthgin within controller actions will contain the `build` context.
+        # All logs written within controller actions will now contain the `build` context.
         yield
       end
     end
