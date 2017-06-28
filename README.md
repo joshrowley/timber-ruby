@@ -172,10 +172,28 @@ the [`Timber::Contexts`](lib/timber/contexts) namespace.
 ```ruby
 logger = Timber::Logger.new(STDOUT)
 logger.with_context(build: {version: "1.0.0"}) do
-  logger.info("My log message")
+  logger.info("Log message with context")
+  # => My log message @metadata {"level": "info", "context": {"build": {"version": "1.0.0"}}}
 end
 
-# => My log message @metadata {"level": "info", "context": {"build": {"version": "1.0.0"}}}
+logger.info("Log message without context")
+# => My log message @metadata {"level": "info"}
+```
+
+Here's a real-world example using context in a Rails controller:
+
+```ruby
+class ApplicationController do
+  around_filter :set_build_context
+
+  private
+    def set_build_context
+      logger.with_context(build: {version: "1.0.0"}) do
+        # All logs writthgin within controller actions will contain the `build` context.
+        yield
+      end
+    end
+end
 ```
 
 * Notice the `:build` root key. Timber will classify this context as such.
