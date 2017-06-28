@@ -1,4 +1,4 @@
-require "logger"
+arequire "logger"
 require "msgpack"
 
 require "timber/config"
@@ -137,12 +137,18 @@ module Timber
     #
     # Example message with metdata:
     #
-    #   My log message @metadata {"level":"info","dt":"2016-09-01T07:00:00.000000-05:00"}
+    #   2016-09-01T07:00:00.000000Z: My log message @metadata {"level":"info"}
     #
     class AugmentedFormatter < Formatter
       METADATA_CALLOUT = " @metadata ".freeze
       NEW_LINE = "\n".freeze
       ESCAPED_NEW_LINE = "\\n".freeze
+
+      class << self
+        def prefix_with_timestamp=(value)
+          @prefix_with_timestamp = value
+        end
+      end
 
       def call(severity, time, progname, msg)
         log_entry = build_log_entry(severity, time, progname, msg)
