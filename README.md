@@ -1,7 +1,5 @@
 # 🌲 Timber - Great Ruby Logging Made Easy [![ISC License](https://img.shields.io/badge/license-ISC-ff69b4.svg)](LICENSE.md) [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://www.rubydoc.info/github/timberio/timber-ruby) [![Build Status](https://travis-ci.org/timberio/timber-ruby.svg?branch=master)](https://travis-ci.org/timberio/timber-ruby)
 
-**We were frustrated with the Ruby logging status quo:**
-
 > Ruby logs are noisy, unparesable, and in the context of multiple processes, unreadable.
 > Current logging systems are clunky, hard to use, and designed for ops engineers.
 
