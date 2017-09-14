@@ -11,7 +11,7 @@ module Timber
           Timber::Config.instance.logger = Proc.new { ::Rails.logger }
         end
 
-        initializer(:timber, before: :build_middleware_stack) do
+        initializer(:timber, before: :build_middleware_stack, after: 'devise:omniauth') do
           Integrations.integrate!
 
           # Install the Rack middlewares so that we capture structured data instead of
